@@ -1634,23 +1634,101 @@ body.presentation-active #map {
 }
 
 @media (max-width: 768px) {
+  /* Nav */
   .navbar { padding: 0 20px; }
   .nav-links { display: none; }
   .nav-toggle { display: flex; }
-  .section { padding: 70px 20px; }
+
+  /* Sections */
+  .section { padding: 60px 20px; }
+  .ng-section-header { margin-bottom: 40px; }
+  .ng-section-title { font-size: clamp(28px, 8vw, 48px); }
+
+  /* Hero */
+  .hero-content { padding: 80px 20px 48px; }
+  .hero-ng-bar { padding: 0 20px; font-size: 11px; letter-spacing: 1.5px; }
+  .hero-ng-vol { display: none; }
+  .hero-tagline { margin-bottom: 28px; }
+  .hero-stats-row { gap: 16px; margin-bottom: 36px; flex-wrap: wrap; justify-content: center; }
+  .hero-stat-sep { display: none; }
+  .hero-stat-num { font-size: clamp(28px, 7vw, 44px); }
+  .hero-actions { display: flex; flex-direction: column; align-items: center; gap: 12px; width: 100%; }
+  .hero-cta { width: 100%; max-width: 320px; justify-content: center; font-size: 14px; letter-spacing: 2px; padding: 14px 24px; }
+  .hero-present-btn { width: 100%; max-width: 320px; justify-content: center; font-size: 13px; }
+  .hero-quote-strip { font-size: 10px; letter-spacing: 1.5px; }
+
+  /* Map */
+  #map { height: 360px; }
+  .map-btn { font-size: 11px; letter-spacing: 1px; padding: 8px 12px; }
+  .map-btn-label { display: none; } /* icon-only on mobile */
+
+  /* Year timeline */
+  .year-timeline-track { height: 260px; }
+  .year-timeline-scroll { padding: 0 24px 24px; }
+  .yr-node { width: 120px; }
+  .yr-pin { width: 44px; height: 44px; font-size: 20px; }
+
+  /* Expedition cards */
   .timeline { grid-template-columns: 1fr; }
+
+  /* Gallery */
   .gallery-grid { columns: 2 140px; }
+  .gallery-filters { gap: 6px; }
+  .gallery-filter-btn { font-size: 11px; letter-spacing: 1px; padding: 6px 12px; }
+
+  /* Stats */
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
   .continents-grid { grid-template-columns: repeat(3, 1fr); }
-  #map { height: 400px; }
-  .hero-ng-bar { padding: 0 20px; }
+
+  /* Lightbox */
   .lightbox-prev { left: 8px; }
   .lightbox-next { right: 8px; }
+  .lightbox-img { max-height: 65vh; }
+
+  /* Trip modal */
+  .trip-modal-container { padding: 24px 20px; max-height: 90vh; }
+
+  /* Presentation journey card */
+  .journey-card { min-width: 260px; max-width: calc(100vw - 32px); padding: 16px 20px 14px; bottom: 60px; }
+  .jc-name { font-size: 22px; }
+  .jc-year { font-size: 16px; }
+  .presentation-hint { font-size: 9px; }
 }
 
 @media (max-width: 480px) {
-  .continents-grid { grid-template-columns: repeat(2, 1fr); }
+  /* Sections */
+  .section { padding: 48px 16px; }
+
+  /* Hero */
+  .hero-content { padding: 72px 16px 40px; }
+  .hero-title-main { font-size: clamp(44px, 14vw, 80px); }
+  .hero-title-sub { letter-spacing: 5px; }
+  .hero-stats-row { gap: 12px; }
+  .hero-vol-text { font-size: 10px; letter-spacing: 2px; }
+
+  /* Map */
+  #map { height: 300px; }
+  .map-overlay-controls { gap: 6px; }
+
+  /* Timeline */
+  .year-timeline-track { height: 220px; }
+  .yr-node { width: 100px; }
+  .yr-pin { width: 38px; height: 38px; font-size: 18px; }
+  .yr-meta { font-size: 8.5px; }
+
+  /* Gallery */
+  .gallery-grid { columns: 1; }
+
+  /* Stats */
   .stats-grid { grid-template-columns: 1fr; }
-  .hero-stats-row { gap: 16px; }
-  .hero-stat-sep { display: none; }
+  .stat-number { font-size: clamp(36px, 12vw, 52px); }
+  .continents-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* Presentation */
+  .journey-card { bottom: 48px; padding: 12px 16px; }
+  .jc-emoji { font-size: 24px; }
+  .jc-name { font-size: 18px; }
+
+  /* Footer */
+  .footer { padding: 40px 20px; }
 }
