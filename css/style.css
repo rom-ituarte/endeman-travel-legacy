@@ -1519,107 +1519,112 @@ body.presentation-active #map {
 
 .year-timeline-scroll {
   overflow-x: auto;
-  padding: 20px 60px 40px;
+  padding: 0 60px 40px;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
   scrollbar-color: var(--ng-yellow) rgba(255,255,255,0.05);
 }
 
-.year-timeline-scroll::-webkit-scrollbar {
-  height: 4px;
-}
-.year-timeline-scroll::-webkit-scrollbar-track {
-  background: rgba(255,255,255,0.05);
-}
-.year-timeline-scroll::-webkit-scrollbar-thumb {
-  background: var(--ng-yellow);
-  border-radius: 2px;
-}
+.year-timeline-scroll::-webkit-scrollbar { height: 4px; }
+.year-timeline-scroll::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); }
+.year-timeline-scroll::-webkit-scrollbar-thumb { background: var(--ng-yellow); border-radius: 2px; }
 
+/* ─── Track ──────────────────────────────────────────────── */
 .year-timeline-track {
   display: flex;
-  align-items: flex-start;
-  gap: 0;
+  align-items: stretch;
   min-width: max-content;
   position: relative;
-  padding-top: 60px;
+  height: 340px;
 }
 
-/* Horizontal rail line */
+/* Horizontal rail runs through vertical center */
 .year-timeline-track::before {
   content: '';
   position: absolute;
-  top: 83px; /* center of pin */
-  left: 60px;
-  right: 60px;
+  top: 50%;
+  left: 0;
+  right: 0;
   height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(255,194,0,0.2) 5%, rgba(255,194,0,0.2) 95%, transparent);
+  transform: translateY(-50%);
+  background: linear-gradient(90deg, transparent, rgba(255,194,0,0.25) 4%, rgba(255,194,0,0.25) 96%, transparent);
 }
 
+/* ─── Node ───────────────────────────────────────────────── */
 .yr-node {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 130px;
+  width: 148px;
   flex-shrink: 0;
   cursor: pointer;
   position: relative;
 }
 
 .yr-node:hover .yr-pin {
-  transform: scale(1.18);
+  transform: scale(1.15);
   box-shadow: 0 0 0 6px rgba(255,194,0,0.2), 0 8px 24px rgba(0,0,0,0.5);
 }
+.yr-node:hover .yr-label { color: var(--ng-yellow); }
 
-.yr-node:hover .yr-label {
-  color: var(--ng-yellow);
+/* ─── Above / Below alternation ─────────────────────────── */
+.yr-spacer { flex: 1; }
+
+.yr-meta {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 8px;
+}
+.yr-above .yr-meta { justify-content: flex-end; padding-bottom: 8px; }
+.yr-below .yr-meta { justify-content: flex-start; padding-top: 8px; }
+
+.yr-tick {
+  width: 1px;
+  height: 22px;
+  background: var(--trip-color);
+  opacity: 0.45;
+  flex-shrink: 0;
 }
 
+/* ─── Pin ────────────────────────────────────────────────── */
 .yr-pin {
-  width: 48px;
-  height: 48px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: 22px;
   border: 2px solid rgba(255,255,255,0.2);
-  box-shadow: 0 0 0 4px rgba(0,0,0,0.5), 0 4px 16px rgba(0,0,0,0.4);
+  box-shadow: 0 0 0 4px rgba(0,0,0,0.6), 0 4px 16px rgba(0,0,0,0.4);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   position: relative;
   z-index: 2;
-  margin-bottom: 10px;
+  flex-shrink: 0;
 }
 
+/* ─── Text ───────────────────────────────────────────────── */
 .yr-year {
   font-family: var(--font-display);
-  font-size: 18px;
+  font-size: 20px;
   color: var(--ng-yellow);
   letter-spacing: 1px;
+  line-height: 1;
   margin-bottom: 4px;
 }
 
 .yr-label {
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 9.5px;
   font-weight: 600;
-  letter-spacing: 0.08em;
-  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.07em;
+  color: rgba(255,255,255,0.5);
   text-align: center;
   text-transform: uppercase;
   transition: color 0.2s ease;
-  padding: 0 6px;
-  line-height: 1.3;
-}
-
-.yr-badge {
-  font-size: 9px;
-  font-family: var(--font-sans);
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  color: var(--ng-yellow);
-  margin-top: 4px;
-  opacity: 0.7;
+  line-height: 1.35;
 }
 
 /* ─── RESPONSIVE ─────────────────────────────────────────── */

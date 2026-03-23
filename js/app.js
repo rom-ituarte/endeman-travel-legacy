@@ -103,21 +103,29 @@ function buildYearTimeline() {
   const track = document.getElementById('yearTimelineTrack');
   if (!track) return;
 
-  const trips = [...ENDEMAN_LEGACY.trips].sort((a, b) => (a.year || a.order) - (b.year || b.order));
+  const trips = [...ENDEMAN_LEGACY.trips].sort((a, b) => (a.year || 9999) - (b.year || 9999) || a.order - b.order);
 
   trips.forEach((trip, i) => {
     const node = document.createElement('div');
-    node.className = 'yr-node';
+    const isAbove = i % 2 === 0;
+    node.className = `yr-node ${isAbove ? 'yr-above' : 'yr-below'}`;
     node.style.setProperty('--trip-color', trip.color);
 
-    node.innerHTML = `
-      <div class="yr-connector${i === 0 ? ' yr-connector--first' : ''}"></div>
-      <div class="yr-pin" style="background:${trip.color}">
-        <span class="yr-emoji">${trip.emoji}</span>
-      </div>
+    const meta = `
       <div class="yr-year">${trip.year || '—'}</div>
       <div class="yr-label">${trip.destination}</div>
-      ${trip.isCruise ? '<div class="yr-badge">⚓ CRUISE</div>' : ''}
+    `;
+
+    node.innerHTML = isAbove ? `
+      <div class="yr-meta">${meta}</div>
+      <div class="yr-tick"></div>
+      <div class="yr-pin" style="background:${trip.color}">${trip.emoji}</div>
+      <div class="yr-spacer"></div>
+    ` : `
+      <div class="yr-spacer"></div>
+      <div class="yr-pin" style="background:${trip.color}">${trip.emoji}</div>
+      <div class="yr-tick"></div>
+      <div class="yr-meta">${meta}</div>
     `;
 
     node.addEventListener('click', () => {
