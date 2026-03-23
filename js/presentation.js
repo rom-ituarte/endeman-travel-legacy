@@ -224,15 +224,12 @@ const PresentationModule = (() => {
     const lmap = MapModule.getMap();
     if (!lmap) return;
 
-    const seenThumbs = new Set();
-    const tripPhotos = allPhotos.filter(p => {
-      if (p.trip_id !== trip.id || !p.lat || !p.lng || !p.thumb) return false;
-      if (seenThumbs.has(p.thumb)) return false;
-      seenThumbs.add(p.thumb);
-      return true;
-    });
+    // Use curated map_pin photos; fall back to any GPS photos if none curated
+    const mapPinPhotos = allPhotos.filter(p => p.trip_id === trip.id && p.map_pin && p.thumb);
+    const fallback = allPhotos.filter(p => p.trip_id === trip.id && p.lat && p.lng && p.thumb && !p.map_pin);
+    const pool = mapPinPhotos.length > 0 ? mapPinPhotos : fallback;
 
-    const spread = pickSpread(tripPhotos, MAX_PHOTO_PINS);
+    const spread = pool.slice(0, MAX_PHOTO_PINS);
     const mapSize = lmap.getSize();
     const cx = mapSize.x / 2;
     const cy = mapSize.y / 2;
@@ -241,7 +238,10 @@ const PresentationModule = (() => {
       setTimeout(() => {
         if (!active) return;
 
-        const gpsLL = [photo.lat, photo.lng];
+        // Use photo GPS if available, otherwise anchor to trip center
+        const gpsLL = (photo.lat && photo.lng)
+          ? [photo.lat, photo.lng]
+          : [trip.centerLat, trip.centerLng];
         const slot = SCREEN_SLOTS[i] || SCREEN_SLOTS[0];
 
         // Photo circle at fixed screen position (converted to lat/lng)
