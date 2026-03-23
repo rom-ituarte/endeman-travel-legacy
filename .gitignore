@@ -1,0 +1,17 @@
+# Bulk photo directories — too large for git, served locally only
+photos/
+
+# Local Claude Code settings
+.claude/
+
+# Scanner / Python
+__pycache__/
+*.pyc
+.DS_Store
+
+# Original audio file with spaces in name (keep come-fly-with-me.m4a)
+audio/Come Fly With Me*
+
+# Keep top_photos/ (curated set) — these go to GitHub
+# Keep data/photos.json — generated metadata
+# Keep audio/come-fly-with-me.m4a

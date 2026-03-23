@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Judy & Ron Endeman Travel Legacy</title>
+
+  <!-- Google Fonts — NatGeo editorial feel -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-brand">
+      <span class="nav-yellow-bar"></span>
+      <span class="nav-title">ENDEMAN TRAVEL LEGACY</span>
+    </div>
+    <div class="nav-links">
+      <a href="#hero" class="nav-link">HOME</a>
+      <a href="#map-section" class="nav-link">MAP</a>
+      <a href="#year-timeline-section" class="nav-link">TIMELINE</a>
+      <a href="#timeline-section" class="nav-link">EXPEDITIONS</a>
+      <a href="#gallery-section" class="nav-link">GALLERY</a>
+      <a href="#stats-section" class="nav-link">LEGACY</a>
+    </div>
+    <div class="nav-toggle" id="navToggle"><span></span><span></span><span></span></div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section id="hero" class="hero">
+    <div class="hero-bg-grid"></div>
+
+    <!-- NatGeo yellow top bar -->
+    <div class="hero-ng-bar">
+      <span class="hero-ng-logo">◼</span>
+      <span>THE ENDEMAN EXPEDITIONS</span>
+      <span class="hero-ng-vol">VOL. I — VII CONTINENTS</span>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-volume">
+        <span class="hero-vol-line"></span>
+        <span class="hero-vol-text">A DECADE OF EXTRAORDINARY JOURNEYS</span>
+        <span class="hero-vol-line"></span>
+      </div>
+
+      <h1 class="hero-title">
+        <span class="hero-title-the">THE</span>
+        <span class="hero-title-main">JUDY &amp; RON<br>ENDEMAN</span>
+        <span class="hero-title-sub">TRAVEL LEGACY</span>
+      </h1>
+
+      <p class="hero-tagline">
+        "The Contagious Traveling Bug!"
+      </p>
+
+      <div class="hero-stats-row">
+        <div class="hero-stat">
+          <div class="hero-stat-num" data-target="7">0</div>
+          <div class="hero-stat-lbl">Continents</div>
+        </div>
+        <div class="hero-stat-sep">|</div>
+        <div class="hero-stat">
+          <div class="hero-stat-num" data-target="30">0</div>
+          <div class="hero-stat-lbl">Countries</div>
+        </div>
+        <div class="hero-stat-sep">|</div>
+        <div class="hero-stat">
+          <div class="hero-stat-num" data-target="50">0</div>
+          <div class="hero-stat-lbl">Destinations</div>
+        </div>
+        <div class="hero-stat-sep">|</div>
+        <div class="hero-stat">
+          <div class="hero-stat-num" data-target="20">0</div>
+          <div class="hero-stat-lbl">Travelers</div>
+        </div>
+      </div>
+
+      <div class="hero-actions">
+        <a href="#map-section" class="hero-cta">
+          EXPLORE THE WORLD MAP
+          <i class="fas fa-chevron-down"></i>
+        </a>
+        <button class="hero-present-btn" id="btnPresent">
+          <i class="fas fa-play"></i> PRESENT LEGACY EVENING
+        </button>
+      </div>
+    </div>
+
+    <div class="hero-quote-strip">
+      <span>"Because of you, we didn't just see the world — we shared it together."</span>
+    </div>
+  </section>
+
+  <!-- ===== MAP SECTION ===== -->
+  <section id="map-section" class="section">
+    <div class="ng-section-header">
+      <div class="ng-section-label">FIELD MAP</div>
+      <h2 class="ng-section-title">THE EXPEDITION MAP</h2>
+      <p class="ng-section-sub">Every pin is a chapter. Every line, a journey shared.</p>
+    </div>
+
+    <div class="map-wrapper">
+      <div id="map"></div>
+
+      <div class="map-overlay-controls">
+        <button class="map-btn" id="btnAnimateFlights">
+          <i class="fas fa-plane"></i> ANIMATE ROUTES
+        </button>
+        <button class="map-btn" id="btnResetView">
+          <i class="fas fa-globe"></i> WORLD VIEW
+        </button>
+        <button class="map-btn" id="btnToggleMarkers">
+          <i class="fas fa-map-marker-alt"></i> DESTINATIONS
+        </button>
+      </div>
+
+      <div class="map-legend" id="mapLegend">
+        <div class="map-legend-title">EXPEDITIONS</div>
+        <div id="mapLegendItems"></div>
+      </div>
+    </div>
+
+    <div class="map-destination-count">
+      <span>50 DESTINATIONS &nbsp;·&nbsp; 7 CONTINENTS &nbsp;·&nbsp; 12 EXPEDITIONS</span>
+    </div>
+  </section>
+
+  <!-- ===== YEAR TIMELINE ===== -->
+  <section id="year-timeline-section" class="section year-timeline-section">
+    <div class="ng-section-header">
+      <div class="ng-section-label">CHRONOLOGY</div>
+      <h2 class="ng-section-title">A DECADE OF EXPEDITIONS</h2>
+      <p class="ng-section-sub">From Europe to Antarctica — every year, a new adventure.</p>
+    </div>
+    <div class="year-timeline-scroll">
+      <div class="year-timeline-track" id="yearTimelineTrack">
+        <!-- Built by app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TIMELINE SECTION ===== -->
+  <section id="timeline-section" class="section section-dark">
+    <div class="ng-section-header">
+      <div class="ng-section-label">EXPEDITION LOG</div>
+      <h2 class="ng-section-title">CHRONICLES OF ADVENTURE</h2>
+      <p class="ng-section-sub">Twelve expeditions. Seven continents. One extraordinary family.</p>
+    </div>
+
+    <div class="timeline-filters" id="timelineFilters">
+      <button class="filter-btn active" data-filter="all">ALL</button>
+      <button class="filter-btn" data-filter="Europe">EUROPE</button>
+      <button class="filter-btn" data-filter="Africa">AFRICA</button>
+      <button class="filter-btn" data-filter="Asia">ASIA</button>
+      <button class="filter-btn" data-filter="North America">NORTH AMERICA</button>
+      <button class="filter-btn" data-filter="South America">SOUTH AMERICA</button>
+      <button class="filter-btn" data-filter="Australia & the Pacific">AUSTRALIA & THE PACIFIC</button>
+      <button class="filter-btn" data-filter="Antarctica">ANTARCTICA</button>
+    </div>
+
+    <div class="timeline" id="timeline"></div>
+  </section>
+
+  <!-- ===== GALLERY SECTION ===== -->
+  <section id="gallery-section" class="section">
+    <div class="ng-section-header">
+      <div class="ng-section-label">FIELD PHOTOGRAPHS</div>
+      <h2 class="ng-section-title">GALLERY OF MOMENTS</h2>
+      <p class="ng-section-sub">Every photograph tells a story. Every face, a memory.</p>
+    </div>
+
+    <div class="gallery-filters" id="galleryFilters">
+      <button class="filter-btn active" data-filter="all">ALL PHOTOS</button>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid">
+      <div class="gallery-empty" id="galleryEmpty">
+        <div class="gallery-empty-icon"><i class="fas fa-images"></i></div>
+        <h3>Photos Load Here</h3>
+        <p>Run the photo scanner to import your images.</p>
+        <div class="gallery-empty-steps">
+          <div class="step"><span class="step-num">1</span><code>pip3 install Pillow tqdm</code></div>
+          <div class="step"><span class="step-num">2</span><code>python3 scripts/scan_photos.py --desktop-only</code></div>
+          <div class="step"><span class="step-num">3</span><code>python3 -m http.server 8080</code></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-load-more" id="galleryLoadMore" style="display:none">
+      <button class="btn-load-more" id="btnLoadMore">
+        <i class="fas fa-plus"></i> LOAD MORE PHOTOGRAPHS
+      </button>
+    </div>
+  </section>
+
+  <!-- ===== LEGACY / STATS SECTION ===== -->
+  <section id="stats-section" class="section section-dark">
+    <div class="ng-section-header">
+      <div class="ng-section-label">BY THE NUMBERS</div>
+      <h2 class="ng-section-title">THE SCALE OF GENEROSITY</h2>
+      <p class="ng-section-sub">What Ron and Judy Endeman gave us cannot be measured</p>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card" data-aos>
+        <div class="stat-icon"><i class="fas fa-globe-americas"></i></div>
+        <div class="stat-number" data-target="7">0</div>
+        <div class="stat-label">CONTINENTS</div>
+        <div class="stat-detail">All 7 on planet Earth</div>
+      </div>
+      <div class="stat-card" data-aos>
+        <div class="stat-icon"><i class="fas fa-passport"></i></div>
+        <div class="stat-number" data-target="30">0</div>
+        <div class="stat-label">COUNTRIES</div>
+        <div class="stat-detail">And counting...</div>
+      </div>
+      <div class="stat-card" data-aos>
+        <div class="stat-icon"><i class="fas fa-map-marker-alt"></i></div>
+        <div class="stat-number" data-target="50">0</div>
+        <div class="stat-label">DESTINATIONS</div>
+        <div class="stat-detail">Each one, a story</div>
+      </div>
+      <div class="stat-card" data-aos>
+        <div class="stat-icon"><i class="fas fa-users"></i></div>
+        <div class="stat-number" data-target="20">0</div>
+        <div class="stat-label">TRAVELERS</div>
+        <div class="stat-detail">A family that grew</div>
+      </div>
+      <div class="stat-card" data-aos>
+        <div class="stat-icon"><i class="fas fa-plane"></i></div>
+        <div class="stat-number" data-target="12">0</div>
+        <div class="stat-label">EXPEDITIONS</div>
+        <div class="stat-detail">One every year</div>
+      </div>
+      <div class="stat-card" data-aos>
+        <div class="stat-icon"><i class="fas fa-heart"></i></div>
+        <div class="stat-number" data-target="10">0</div>
+        <div class="stat-label">+ YEARS</div>
+        <div class="stat-detail">Of pure generosity</div>
+      </div>
+    </div>
+
+    <!-- 7 Continents -->
+    <div class="continents-showcase">
+      <h3 class="continents-title">SEVEN CONTINENTS — COMPLETED</h3>
+      <div class="continents-grid" id="continentsGrid"></div>
+    </div>
+
+    <!-- Legacy quote -->
+    <div class="legacy-quote-block">
+      <div class="legacy-ng-bar"></div>
+      <blockquote class="legacy-quote">
+        "Some people give opportunities.<br>
+        <em>You gave us the world."</em>
+      </blockquote>
+      <div class="legacy-quote-attr">— Your Endeman Travel Family</div>
+    </div>
+  </section>
+
+  <!-- ===== TRIBUTE ===== -->
+  <section id="tribute-section" class="tribute-section">
+    <div class="tribute-ng-rule"></div>
+    <div class="tribute-content">
+      <div class="tribute-eyebrow">WITH LOVE AND GRATITUDE</div>
+      <h2 class="tribute-title">THANK YOU,<br><em>RON &amp; JUDY ENDEMAN</em></h2>
+      <div class="tribute-rule"></div>
+      <div class="tribute-body">
+        <p>For the journeys, for the memories,<br>and for showing us a world we might never have seen.</p>
+        <p>Every destination was unforgettable,<br>but the greatest gift was sharing it <em>together.</em></p>
+        <p class="tribute-closing">Because of you, we became<br><strong>a family of travelers.</strong></p>
+      </div>
+      <div class="tribute-sig">Your Endeman Travel Family</div>
+    </div>
+    <div class="tribute-ng-rule"></div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-ng-yellow"></div>
+    <div class="footer-inner">
+      <div class="footer-title">THE JUDY &amp; RON ENDEMAN TRAVEL LEGACY</div>
+      <div class="footer-sub">7 CONTINENTS &nbsp;·&nbsp; 30+ COUNTRIES &nbsp;·&nbsp; A LIFETIME OF ADVENTURES SHARED</div>
+      <div class="footer-divider"></div>
+      <div class="footer-bottom">Created with love to honor their extraordinary generosity</div>
+    </div>
+  </footer>
+
+  <!-- ===== PRESENTATION OVERLAY ===== -->
+  <div id="presentationOverlay" class="presentation-overlay">
+
+    <!-- ACT 1: Tribute Screen -->
+    <div id="tributeScreen" class="tribute-screen" style="display:none">
+      <div class="tribute-ng-top-bar">
+        <span class="tribute-ng-square">◼</span>
+        <span>THE ENDEMAN EXPEDITIONS</span>
+        <span class="tribute-ng-vol">VOL. I — VII CONTINENTS</span>
+      </div>
+      <div class="tribute-main">
+        <div class="tribute-eyebrow-line"></div>
+        <div class="tribute-eyebrow-text">A DECADE OF EXTRAORDINARY JOURNEYS</div>
+        <div class="tribute-eyebrow-line"></div>
+      </div>
+      <h1 class="tribute-hero-title">
+        <span class="tribute-the">THE</span>
+        <span class="tribute-names">JUDY &amp; RON<br>ENDEMAN</span>
+        <span class="tribute-legacy">TRAVEL LEGACY</span>
+      </h1>
+      <p class="tribute-tagline">"The Contagious Traveling Bug!"</p>
+      <div class="tribute-stats-row">
+        <span>7 CONTINENTS</span>
+        <span class="tribute-dot">·</span>
+        <span>30+ COUNTRIES</span>
+        <span class="tribute-dot">·</span>
+        <span>12 EXPEDITIONS</span>
+        <span class="tribute-dot">·</span>
+        <span>10+ YEARS</span>
+      </div>
+    </div>
+
+    <!-- ACT 2: Map Journey UI (overlay on top of fullscreen map) -->
+    <div id="mapJourneyUI" class="map-journey-ui" style="display:none">
+      <!-- Sliding trip card -->
+      <div id="journeyCard" class="journey-card"></div>
+
+      <!-- Trip counter (top right) -->
+      <div id="presentationCounter" class="presentation-counter"></div>
+
+      <!-- Progress bar (bottom) -->
+      <div class="presentation-progress">
+        <div id="presentationProgressBar" class="presentation-progress-bar"></div>
+      </div>
+
+      <!-- Paused indicator -->
+      <div id="presentationPaused" class="presentation-paused">
+        <div class="paused-icon"><i class="fas fa-pause"></i> PAUSED</div>
+        <div class="paused-hint">Press SPACE to resume</div>
+      </div>
+    </div>
+
+    <!-- ACT 3: Gallery Finale -->
+    <div id="finaleOverlay" class="finale-overlay" style="display:none">
+      <div id="finaleMosaic" class="finale-mosaic"></div>
+      <div id="finaleMessage" class="finale-message">
+        <div class="finale-ng-bar"></div>
+        <div class="finale-thank">"Some people give opportunities.</div>
+        <div class="finale-names"><em>You gave us the world."</em></div>
+        <div class="finale-rule"></div>
+        <div class="finale-sig">— Your Endeman Travel Family</div>
+      </div>
+    </div>
+
+    <!-- Shared: hint bar at bottom -->
+    <div id="presentationHint" class="presentation-hint"></div>
+
+  </div>
+
+  <!-- Music (drop come-fly-with-me.mp3 into audio/ folder) -->
+  <audio id="presentationAudio" src="audio/come-fly-with-me.m4a" loop preload="none"></audio>
+
+  <!-- ===== LIGHTBOX ===== -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-backdrop" id="lightboxBackdrop"></div>
+    <div class="lightbox-container">
+      <button class="lightbox-close" id="lightboxClose"><i class="fas fa-times"></i></button>
+      <button class="lightbox-nav lightbox-prev" id="lightboxPrev"><i class="fas fa-chevron-left"></i></button>
+      <button class="lightbox-nav lightbox-next" id="lightboxNext"><i class="fas fa-chevron-right"></i></button>
+      <div class="lightbox-image-wrap">
+        <img class="lightbox-img" id="lightboxImg" src="" alt="">
+        <div class="lightbox-loading" id="lightboxLoading"><i class="fas fa-circle-notch fa-spin"></i></div>
+      </div>
+      <div class="lightbox-info">
+        <div class="lightbox-location" id="lightboxLocation">
+          <i class="fas fa-map-marker-alt"></i>
+          <span id="lightboxLocationText"></span>
+        </div>
+        <div class="lightbox-meta">
+          <span id="lightboxDate"></span>
+          <span class="lightbox-sep">·</span>
+          <span id="lightboxTrip"></span>
+          <span class="lightbox-sep">·</span>
+          <span id="lightboxCounter"></span>
+        </div>
+        <div class="lightbox-coords" id="lightboxCoords"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TRIP MODAL ===== -->
+  <div class="trip-modal" id="tripModal">
+    <div class="trip-modal-backdrop" id="tripModalBackdrop"></div>
+    <div class="trip-modal-container">
+      <button class="trip-modal-close" id="tripModalClose"><i class="fas fa-times"></i></button>
+      <div class="trip-modal-header" id="tripModalHeader">
+        <div class="trip-modal-emoji" id="tripModalEmoji"></div>
+        <div>
+          <h2 class="trip-modal-title" id="tripModalTitle"></h2>
+          <p class="trip-modal-subtitle" id="tripModalSubtitle"></p>
+        </div>
+      </div>
+      <div class="trip-modal-body">
+        <div class="trip-modal-locations" id="tripModalLocations"></div>
+        <div class="trip-modal-highlights" id="tripModalHighlights"></div>
+        <div class="trip-modal-book-text" id="tripModalBookText"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/timeline.js"></script>
+  <script src="js/gallery.js"></script>
+  <script src="js/presentation.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
