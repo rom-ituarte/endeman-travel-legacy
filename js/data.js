@@ -332,7 +332,7 @@ const ENDEMAN_LEGACY = {
     continents: 7,
     countries: 32,
     destinations: 56,
-    trips: 10,
+    trips: 11,
     years: "10+",
     travelers: 20
   },
