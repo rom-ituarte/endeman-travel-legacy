@@ -8,7 +8,7 @@ const PresentationModule = (() => {
 
   // ─── Config ──────────────────────────────────────────────────
   const TRIBUTE_DURATION  = 6000;   // ms for opening tribute screen
-  const TRIP_DURATION     = 20000;  // ms per trip in journey
+  const TRIP_DURATION     = 15000;  // ms per trip in journey
   const FLY_DURATION      = 2200;   // ms for map fly animation
   const FINALE_DURATION   = 12000;  // ms for gallery finale before auto-exit
   const MAX_PHOTO_PINS    = 5;      // max geo-photo pins per trip

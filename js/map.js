@@ -182,43 +182,47 @@ const MapModule = (() => {
     animationRunning = true;
 
     const btn = document.getElementById('btnAnimateFlights');
+    const label = btn.querySelector('.map-btn-label');
     btn.classList.add('active');
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>ANIMATING...</span>';
+    if (label) label.textContent = ' ANIMATING...';
 
-    // Reset all lines to invisible
+    // Hide all lines first
     flightLines.forEach(({ line }) => line.setStyle({ opacity: 0 }));
 
-    // Animate each line sequentially with a delay
+    // Draw each line progressively with staggered start
     let delay = 0;
-    const increment = 150;
-
-    flightLines.forEach(({ line, color }, i) => {
+    flightLines.forEach(({ line, color, isCruise }, i) => {
       setTimeout(() => {
-        animateLine(line, color);
+        drawLineProgressive(line, color, isCruise);
         if (i === flightLines.length - 1) {
           setTimeout(() => {
             animationRunning = false;
             btn.classList.remove('active');
-            btn.innerHTML = '<i class="fas fa-plane"></i> <span>ANIMATE ROUTES</span>';
-          }, 1500);
+            if (label) label.textContent = ' ANIMATE ROUTES';
+          }, 2000);
         }
       }, delay);
-      delay += increment;
+      delay += 120;
     });
   }
 
-  function animateLine(line, color) {
-    let opacity = 0;
-    const target = 0.55;
-    const step = 0.05;
+  // Progressive path drawing — route visibly traces itself point by point
+  function drawLineProgressive(line, color, isCruise) {
+    const allPoints = line.getLatLngs();
+    const opacity  = isCruise ? 0.55 : 0.5;
+    const weight   = isCruise ? 2    : 1.5;
+    const dash     = isCruise ? '2, 9' : '4, 8';
 
-    line.setStyle({ color, opacity: 0, weight: 1.5, dashArray: '5, 6' });
+    line.setLatLngs([allPoints[0]]);
+    line.setStyle({ color, opacity, weight, dashArray: dash });
 
-    const interval = setInterval(() => {
-      opacity += step;
-      line.setStyle({ opacity: Math.min(opacity, target) });
-      if (opacity >= target) clearInterval(interval);
-    }, 30);
+    let idx = 1;
+    const pointsPerStep = Math.max(1, Math.floor(allPoints.length / 30));
+    const id = setInterval(() => {
+      idx = Math.min(idx + pointsPerStep, allPoints.length);
+      line.setLatLngs(allPoints.slice(0, idx));
+      if (idx >= allPoints.length) clearInterval(id);
+    }, 25);
   }
 
   // ─── Reset View ───────────────────────────────────────────────
