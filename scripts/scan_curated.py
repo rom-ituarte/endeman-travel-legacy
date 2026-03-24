@@ -21,9 +21,9 @@ THUMB_SIZE = (400, 400)
 # Folder name → trip_id mapping (add entries when folder name differs from trip id)
 FOLDER_MAP = {
     "africa 1":           "africa",
-    "africa 2":           "africa",
+    "africa 2":           "africa2",
     "african safari 1":   "africa",
-    "african safari 2":   "africa",
+    "african safari 2":   "africa2",
     # All others: folder name with spaces→underscores is used as trip_id
 }
 

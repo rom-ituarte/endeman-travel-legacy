@@ -29,12 +29,18 @@ const ENDEMAN_LEGACY = {
     { name: "Havana, Cuba",             lat: 23.1136,  lng:  -82.3666, trip: "central_america", country: "Cuba" },
     { name: "Miami",                    lat: 25.7617,  lng:  -80.1918, trip: "central_america", country: "USA" },
 
-    // AFRICA SAFARI (2020 & 2025)
+    // AFRICA SAFARI 1 (2020)
     { name: "Johannesburg",             lat: -26.2041, lng:  28.0473, trip: "africa", country: "South Africa" },
     { name: "Zimbabwe",                 lat: -17.9244, lng:  25.8566, trip: "africa", country: "Zimbabwe" },
     { name: "Zambia (Victoria Falls)",  lat: -17.8618, lng:  25.8579, trip: "africa", country: "Zambia" },
     { name: "Serengeti, Tanzania",      lat:  -2.3326, lng:  34.8331, trip: "africa", country: "Tanzania" },
     { name: "Masai Mara, Kenya",        lat:  -1.4061, lng:  35.0087, trip: "africa", country: "Kenya" },
+
+    // AFRICA SAFARI 2 (2025)
+    { name: "Nairobi, Kenya",           lat:  -1.2921, lng:  36.8219, trip: "africa2", country: "Kenya" },
+    { name: "Amboseli, Kenya",          lat:  -2.6527, lng:  37.2606, trip: "africa2", country: "Kenya" },
+    { name: "Ngorongoro, Tanzania",     lat:  -3.2539, lng:  35.5010, trip: "africa2", country: "Tanzania" },
+    { name: "Zanzibar",                 lat:  -6.1659, lng:  39.2026, trip: "africa2", country: "Tanzania" },
 
     // ALASKA CRUISE (2021)
     { name: "Seattle",                  lat: 47.6062,  lng: -122.3321, trip: "alaska", country: "USA" },
@@ -288,7 +294,7 @@ const ENDEMAN_LEGACY = {
       continentLabel: "Australia & the Pacific",
       centerLat: -38.0, centerLng: 162.0, zoom: 3,
       color: "#A8DADC", colorDark: "#3A8A8C",
-      emoji: "🦘", order: 9, year: 2025, isCruise: true,
+      emoji: "🦘", order: 9, year: 2025, isCruise: true, month: "Feb",
       highlights: [
         "Great Barrier Reef, Cairns",
         "Melbourne — Culture Capital",
@@ -303,6 +309,29 @@ const ENDEMAN_LEGACY = {
       photos: []
     },
     {
+      id: "africa2",
+      folder: "AFRICA2",
+      destination: "Africa — Safari II",
+      subtitle: "Return to the Wild",
+      countries: ["Kenya", "Tanzania"],
+      continent: "Africa",
+      continentLabel: "Africa",
+      centerLat: -3.0, centerLng: 37.0, zoom: 5,
+      color: "#F4A261", colorDark: "#C4621A",
+      emoji: "🦒", order: 10, year: 2025,
+      highlights: [
+        "Nairobi — The Safari Capital",
+        "Amboseli — Kilimanjaro Views",
+        "Ngorongoro Crater — The Garden of Eden",
+        "Zanzibar — Spice Island",
+        "The Big Five Again",
+        "Sundowners on the Savanna"
+      ],
+      locations: ["Nairobi", "Amboseli (Kenya)", "Ngorongoro (Tanzania)", "Zanzibar"],
+      bookText: "Africa Safari II — The call of the wild brought us back. A second safari, new landscapes, and once again an Africa that took our breath away.",
+      photos: []
+    },
+    {
       id: "argentina_antartica",
       folder: "ARGENTINA",
       destination: "End of the World",
@@ -312,7 +341,7 @@ const ENDEMAN_LEGACY = {
       continentLabel: "South America · Antarctica",
       centerLat: -52.0, centerLng: -65.0, zoom: 3,
       color: "#B8D4E8", colorDark: "#4A7A9A",
-      emoji: "🐧", order: 10, year: 2026, isCruise: true,
+      emoji: "🐧", order: 11, year: 2026, isCruise: true,
       highlights: [
         "Buenos Aires — The Paris of South America",
         "Tango in La Boca",
@@ -341,7 +370,7 @@ const ENDEMAN_LEGACY = {
     { name: "North America",           emoji: "🌎", trips: ["alaska", "baja_mexico", "central_america"], visited: true },
     { name: "South America",           emoji: "🌎", trips: ["argentina_antartica"], visited: true },
     { name: "Europe",                  emoji: "🌍", trips: ["european_cruise", "mediterranean"], visited: true },
-    { name: "Africa",                  emoji: "🌍", trips: ["egypt", "africa"], visited: true },
+    { name: "Africa",                  emoji: "🌍", trips: ["egypt", "africa", "africa2"], visited: true },
     { name: "Asia",                    emoji: "🌏", trips: ["asia", "mediterranean"], visited: true },
     { name: "Australia & the Pacific", emoji: "🌏", trips: ["australia_nz"], visited: true },
     { name: "Antarctica",              emoji: "❄️",  trips: ["argentina_antartica"], visited: true }
