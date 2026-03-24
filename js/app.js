@@ -37,6 +37,7 @@ function initCounters() {
 
 function animateCounter(el) {
   const target = parseInt(el.dataset.target, 10);
+  const suffix = el.dataset.suffix || '';
   const steps = 60;
   let step = 0;
 
@@ -45,7 +46,7 @@ function animateCounter(el) {
     const t = step / steps;
     const eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
     el.textContent = Math.round(target * eased);
-    if (step >= steps) { el.textContent = target; clearInterval(interval); }
+    if (step >= steps) { el.textContent = target + suffix; clearInterval(interval); }
   }, 2000 / steps);
 }
 
